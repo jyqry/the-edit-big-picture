@@ -122,11 +122,23 @@ export default {
       if (input.files && input.files[0]) {
         var reader = new FileReader()
         reader.onload = (e) => {
-          this.page.theme.backgroundImage = e.target.result
+          this.page.theme.backgroundImage = this.dataURItoBlob(e.target.result)
           this.update()
         }
         reader.readAsDataURL(input.files[0])
       }
+    },
+    dataURItoBlob: function (dataURI) {
+      var byteString = atob(dataURI.split(',')[1])
+      // var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+      var ab = new ArrayBuffer(byteString.length)
+      var ia = new Uint8Array(ab)
+      for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i)
+      }
+
+      var bb = new Blob([ab])
+      return window.URL.createObjectURL(bb)
     },
     removeBackgroundImage: function () {
       this.$refs.bgimg.value = ''
