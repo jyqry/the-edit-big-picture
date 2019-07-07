@@ -1,30 +1,18 @@
-# big.picture
+# Big Picture
+스크린샷을 꾸며주는 앱입니다. 현재 아이폰X 모델만 지원합니다.
+## 디에디트
+웹진 [디에디트](http://the-edit.co.kr/)를 위해 만든 도구입니다. (사랑해요 디에디트)
 
-> A Vue.js project
+# Live Demo
+[http://bigpicture.chichi.space/](http://bigpicture.chichi.space/) 에서 실제 동작하는 앱을 확인할 수 있습니다.
 
-## Build Setup
+# 이런걸 만들 수 있어요
+![](https://chichi.space/img/the-edit-4.png)
 
-``` bash
-# install dependencies
-npm install
+## 실제 활용중인 이미지를 디에디트 기사에서 만나보세요
+* [http://the-edit.co.kr/22955](http://the-edit.co.kr/22955)
+* [http://the-edit.co.kr/21662](http://the-edit.co.kr/21662)
+* [http://the-edit.co.kr/21914](http://the-edit.co.kr/21914)
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# See Also
+* [https://chichi.space/post/너의-채팅방](https://chichi.space/post/너의-채팅방)
