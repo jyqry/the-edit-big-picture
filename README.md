@@ -9,7 +9,7 @@
 # 이런걸 만들 수 있어요
 ![](https://chichi.space/img/the-edit-4.png)
 
-## 실제 활용중인 이미지를 디에디트 기사에서 만나보세요
+## 이 도구를 활용한 디에디트 기사를 만나보세요
 * [http://the-edit.co.kr/22955](http://the-edit.co.kr/22955)
 * [http://the-edit.co.kr/21662](http://the-edit.co.kr/21662)
 * [http://the-edit.co.kr/21914](http://the-edit.co.kr/21914)
