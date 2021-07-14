@@ -5,19 +5,46 @@
     </div>
     <div class="item">
       <div>
-        크기 <input type="number" v-model="canvasWidth"> * <input type="number" v-model="canvasHeight">
+        크기 <input type="number" v-model="canvasWidth" /> *
+        <input type="number" v-model="canvasHeight" />
       </div>
       <div>
-        상단여백 <input type="number" @change="update" v-model="page.theme.padding.canvasTop"> px
+        상단여백
+        <input
+          type="number"
+          @change="update"
+          v-model="page.theme.padding.canvasTop"
+        />
+        px
       </div>
       <div>
-        <input type="range" @change.passive="update" min="-500" max="500" v-model="page.theme.padding.canvasTop" style="width: 100%;">
+        <input
+          type="range"
+          @change.passive="update"
+          min="-500"
+          max="500"
+          v-model="page.theme.padding.canvasTop"
+          style="width: 100%;"
+        />
       </div>
       <div>
-        좌측여백 <input type="number" @change="update" v-model="page.theme.padding.canvasLeft"> px
+        좌측여백
+        <input
+          type="number"
+          @change="update"
+          v-model="page.theme.padding.canvasLeft"
+        />
+        px
       </div>
       <div>
-        <input type="range" @change.passive="update" min="-500" max="500" v-model="page.theme.padding.canvasLeft" style="width: 100%;">
+        <input
+          type="range"
+          @change.passive="update"
+          min="-500"
+          max="500"
+          v-model="page.theme.padding.canvasLeft"
+          style="width: 100%;"
+        />
       </div>
     </div>
 
@@ -25,20 +52,58 @@
       디바이스
     </div>
     <div class="item">
-      <div class="device apple-iphone-x" v-bind:class="{ active: page.theme.device === 'apple-iphone-x' }" @click="page.theme.device = 'apple-iphone-x'">
-        iphone x
+      <div class="device-container">
+        <div
+          class="device apple-iphone-x"
+          v-bind:class="{ active: page.theme.device === 'apple-iphone-x' }"
+          @click="changeDevice('apple-iphone-x')"
+        >
+          iPhone x
+        </div>
+        <div
+          class="device apple-iphone-x"
+          v-bind:class="{ active: page.theme.device === 'apple-iphone-12-pro' }"
+          @click="changeDevice('apple-iphone-12-pro')"
+        >
+          iPhone 12 Pro
+        </div>
       </div>
       <div>
-        간격 <input type="number" @change="update" v-model="page.theme.padding.deviceGutter"> px
+        간격
+        <input
+          type="number"
+          @change="update"
+          v-model="page.theme.padding.deviceGutter"
+        />
+        px
       </div>
       <div>
-        <input type="range" @change.passive="update" min="-200" max="200" v-model="page.theme.padding.deviceGutter" style="width: 100%;">
+        <input
+          type="range"
+          @change.passive="update"
+          min="-200"
+          max="200"
+          v-model="page.theme.padding.deviceGutter"
+          style="width: 100%;"
+        />
       </div>
       <div>
-        크기 <input type="number" @change="update" v-model="page.theme.canvas.deviceZoom">%
+        크기
+        <input
+          type="number"
+          @change="update"
+          v-model="page.theme.canvas.deviceZoom"
+        />%
       </div>
       <div>
-        <input type="range" @change.passive="update" min="10" max="200" v-model="page.theme.canvas.deviceZoom" style="width: 100%;">
+        <input
+          type="range"
+          @change.passive="update"
+          min="10"
+          max="200"
+          v-model="page.theme.canvas.deviceZoom"
+          style="width: 100%;"
+        />
       </div>
     </div>
 
@@ -46,10 +111,19 @@
       배경색
     </div>
     <div class="item">
-      <div class="background-color" v-bind:style="{ backgroundColor: page.theme.backgroundColor }" @click="backgroundColorToggle = !backgroundColorToggle"></div>
+      <div
+        class="background-color"
+        v-bind:style="{ backgroundColor: page.theme.backgroundColor }"
+        @click="backgroundColorToggle = !backgroundColorToggle"
+      ></div>
       <div class="picker" v-show="backgroundColorToggle">
-        <chrome-picker :value="page.theme.backgroundColor" @input="updateBackgroundColor"></chrome-picker>
-        <button class="button" @click="backgroundColorToggle = false">닫기</button>
+        <chrome-picker
+          :value="page.theme.backgroundColor"
+          @input="updateBackgroundColor"
+        ></chrome-picker>
+        <button class="button" @click="backgroundColorToggle = false">
+          닫기
+        </button>
       </div>
     </div>
 
@@ -57,18 +131,35 @@
       워터마크
     </div>
     <div class="item">
-      <span style="cursor: pointer" @click="changeWatermark('none')"><span v-show="page.theme.watermark === 'none'">✔</span>없음</span>
-      <span style="cursor: pointer" @click="changeWatermark('gray')"><span v-show="page.theme.watermark === 'gray'">✔</span>그레이</span>
-      <span style="cursor: pointer" @click="changeWatermark('white')"><span v-show="page.theme.watermark === 'white'">✔</span>화이트</span>
+      <span style="cursor: pointer" @click="changeWatermark('none')"
+        ><span v-show="page.theme.watermark === 'none'">✔</span>없음</span
+      >
+      <span style="cursor: pointer" @click="changeWatermark('gray')"
+        ><span v-show="page.theme.watermark === 'gray'">✔</span>그레이</span
+      >
+      <span style="cursor: pointer" @click="changeWatermark('white')"
+        ><span v-show="page.theme.watermark === 'white'">✔</span>화이트</span
+      >
     </div>
 
     <div class="title">
       배경이미지
     </div>
     <div class="item bgimg">
-      <div class="background-color" v-bind:style="{ backgroundImage: `url('${page.theme.backgroundImage}')` }" @click="$refs.bgimg.click()"></div>
+      <div
+        class="background-color"
+        v-bind:style="{
+          backgroundImage: `url('${page.theme.backgroundImage}')`
+        }"
+        @click="$refs.bgimg.click()"
+      ></div>
       <div class="remove" @click="removeBackgroundImage"></div>
-      <input class="hide" type="file" ref="bgimg" @change="updateBackgroundImage($event)">
+      <input
+        class="hide"
+        type="file"
+        ref="bgimg"
+        @change="updateBackgroundImage($event)"
+      />
     </div>
 
     <div class="title">
@@ -76,7 +167,7 @@
     </div>
     <div id="album">
       <div class="image" v-for="(image, index) in page.images" :key="index">
-        <img :src="image">
+        <img :src="image" />
         <div class="remove" @click="removeImage(index)"></div>
       </div>
     </div>
@@ -84,98 +175,99 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { Chrome } from 'vue-color'
+import { mapGetters } from "vuex";
+import { Chrome } from "vue-color";
 
 export default {
-  mounted () {
-    this.getTheme()
+  mounted() {
+    this.getTheme();
   },
   components: {
-    'chrome-picker': Chrome
+    "chrome-picker": Chrome
   },
-  data () {
+  data() {
     return {
       isLoaded: false,
       page: null,
       backgroundColorToggle: false,
       canvasWidth: 0,
       canvasHeight: 0
-    }
+    };
   },
   methods: {
-    removeImage: function (index) {
-      this.$store.dispatch('removeImage', index)
+    removeImage: function(index) {
+      this.$store.dispatch("removeImage", index);
     },
-    getTheme: function () {
-      this.page = JSON.parse(JSON.stringify(this.pages[this.currentPage]))
-      this.isLoaded = true
-      this.canvasWidth = this.page.theme.canvas.width
-      this.canvasHeight = this.page.theme.canvas.height
+    getTheme: function() {
+      this.page = JSON.parse(JSON.stringify(this.pages[this.currentPage]));
+      this.isLoaded = true;
+      this.canvasWidth = this.page.theme.canvas.width;
+      this.canvasHeight = this.page.theme.canvas.height;
     },
-    updateBackgroundColor: function (val) {
-      this.page.theme.backgroundColor = `rgba(${val.rgba.r}, ${val.rgba.g}, ${val.rgba.b}, ${val.rgba.a})`
-      this.update()
+    updateBackgroundColor: function(val) {
+      this.page.theme.backgroundColor = `rgba(${val.rgba.r}, ${val.rgba.g}, ${val.rgba.b}, ${val.rgba.a})`;
+      this.update();
     },
-    updateBackgroundImage: function (event) {
-      var input = event.target
+    updateBackgroundImage: function(event) {
+      var input = event.target;
       if (input.files && input.files[0]) {
-        var reader = new FileReader()
-        reader.onload = (e) => {
-          this.page.theme.backgroundImage = this.dataURItoBlob(e.target.result)
-          this.update()
-        }
-        reader.readAsDataURL(input.files[0])
+        var reader = new FileReader();
+        reader.onload = e => {
+          this.page.theme.backgroundImage = this.dataURItoBlob(e.target.result);
+          this.update();
+        };
+        reader.readAsDataURL(input.files[0]);
       }
     },
-    dataURItoBlob: function (dataURI) {
-      var byteString = atob(dataURI.split(',')[1])
+    dataURItoBlob: function(dataURI) {
+      var byteString = atob(dataURI.split(",")[1]);
       // var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
-      var ab = new ArrayBuffer(byteString.length)
-      var ia = new Uint8Array(ab)
+      var ab = new ArrayBuffer(byteString.length);
+      var ia = new Uint8Array(ab);
       for (var i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i)
+        ia[i] = byteString.charCodeAt(i);
       }
 
-      var bb = new Blob([ab])
-      return window.URL.createObjectURL(bb)
+      var bb = new Blob([ab]);
+      return window.URL.createObjectURL(bb);
     },
-    removeBackgroundImage: function () {
-      this.$refs.bgimg.value = ''
-      this.page.theme.backgroundImage = ''
-      this.update()
+    removeBackgroundImage: function() {
+      this.$refs.bgimg.value = "";
+      this.page.theme.backgroundImage = "";
+      this.update();
     },
-    changeWatermark: function (string) {
-      this.page.theme.watermark = string
-      this.update()
+    changeWatermark: function(string) {
+      this.page.theme.watermark = string;
+      this.update();
     },
-    update: function () {
-      this.$store.dispatch('setTheme', JSON.parse(JSON.stringify(this.page)))
+    changeDevice: function(device) {
+      this.page.theme.device = device;
+      this.update();
+    },
+    update: function() {
+      this.$store.dispatch("setTheme", JSON.parse(JSON.stringify(this.page)));
     }
   },
   computed: {
-    ...mapGetters([
-      'pages',
-      'currentPage'
-    ])
+    ...mapGetters(["pages", "currentPage"])
   },
   watch: {
-    'currentPage': function () {
-      this.getTheme()
+    currentPage: function() {
+      this.getTheme();
     },
-    canvasWidth: function () {
-      this.page.theme.canvas.width = this.canvasWidth
-      this.update()
+    canvasWidth: function() {
+      this.page.theme.canvas.width = this.canvasWidth;
+      this.update();
     },
-    canvasHeight: function () {
-      this.page.theme.canvas.height = this.canvasHeight
-      this.update()
+    canvasHeight: function() {
+      this.page.theme.canvas.height = this.canvasHeight;
+      this.update();
     },
-    pages: function () {
-      this.getTheme()
+    pages: function() {
+      this.getTheme();
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -185,15 +277,15 @@ export default {
   left: 0;
   width: 240px;
   padding-top: 70px;
-  padding-left: 16px;
-  padding-right: 16px;
   height: 100%;
   overflow-y: auto;
   background-color: #ffffff;
-  box-shadow: 2px 0 3px rgba(0, 0, 0, .18);
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.18);
   z-index: 100;
   .title {
-    padding-top:24px;
+    padding-top: 24px;
+    padding-left: 16px;
+    padding-right: 16px;
     padding-bottom: 8px;
     font-size: 12px;
     font-weight: 700;
@@ -201,6 +293,8 @@ export default {
   .item {
     position: relative;
     font-size: 13px;
+    padding: 16px;
+    border-bottom: 1px solid #ddd;
   }
   .background-color {
     width: 48px;
@@ -223,7 +317,7 @@ export default {
     height: 16px;
     background-color: #2b2b2b;
     border-radius: 50%;
-    background-image: url('~@/assets/svg/small-remove.svg');
+    background-image: url("~@/assets/svg/small-remove.svg");
     background-repeat: no-repeat;
     background-position: center;
     transition: opacity 300ms;
@@ -251,18 +345,24 @@ export default {
     border-bottom: 1px solid #000000;
     padding: 0 10px;
   }
-  .device {
-    display: inline-block;
-    width: 110px;
-    height: 48px;
-    line-height: 48px;
-    border-radius: 10px;
-    background-color: #fff;
-    border: solid 1px #eee;
-    text-align: center;
-    &.active {
-      border: solid 5px #eeee;
-      line-height: 38px;
+  .device-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+    .device {
+      width: 48%;
+      height: 48px;
+      line-height: 46px;
+      border-radius: 10px;
+      background-color: #fff;
+      border: solid 1px #eee;
+      text-align: center;
+      font-size: 12px;
+      &.active {
+        border: solid 5px #ff6200;
+        line-height: 38px;
+      }
     }
   }
   #album {
@@ -288,7 +388,7 @@ export default {
         height: 16px;
         background-color: #2b2b2b;
         border-radius: 50%;
-        background-image: url('~@/assets/svg/small-remove.svg');
+        background-image: url("~@/assets/svg/small-remove.svg");
         background-repeat: no-repeat;
         background-position: center;
         transition: opacity 300ms;
